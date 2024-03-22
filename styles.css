@@ -175,18 +175,6 @@ h1 {
 
 }
 
-#search-btn{
-  padding: 0.2em 0.2em;
-  border: 1px solid var(--main-green);
-  background-color: var(--main-green);
-
-}
-
-#search-btn:hover{
-  cursor: pointer;
-  border: 1px solid white;
-}
-
 ul li{
   margin: 0.5em;
   display: inline-block;

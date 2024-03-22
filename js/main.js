@@ -18,6 +18,12 @@ let showRovers = function (rovers) {
         list_elem.appendChild(checkbox_label_elem);
 
         view.ul_rovers.appendChild(list_elem);
+
+        input_elem.addEventListener("click", function(){
+            view.btn_search.classList.add("btn_clicable");
+            view.btn_favoris.classList.add("btn_clicable");
+            
+        })
     }
 };
 
@@ -73,6 +79,7 @@ fetch(API_BASEURL + "/rovers/perseverance/photos?earth_date=2023-03-10&camera=mc
         showError(err);
     });
 
+<<<<<<< HEAD
 view.btn_search.addEventListener("click", function () {
     // créé une configuration a partire des options coché puis appeller une fonction pour faire l'affichage du résultat
     let choosed_rover = document.querySelector('input[name="rover"]:checked').value;
@@ -81,3 +88,6 @@ view.btn_search.addEventListener("click", function () {
 
     fetchPhotoFromConfig(config);
 });
+=======
+ 
+>>>>>>> 1e47622 (rendre cliquable les boutons rechercher et favoris)
