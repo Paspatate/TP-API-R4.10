@@ -39,10 +39,15 @@ let showPhoto = function (photos) {
     for (const photo of photos) {
         const base_div_elem = document.createElement("div");
         const img_elem = document.createElement("img");
+        const text_elem = document.createElement("p");
 
         img_elem.src = photo.img_src;
+        text_elem.setAttribute("for", photo.id);
+        text_elem.innerText = photo.earth_date + ", " + photo.rover.name + ", " + photo.sol + " jour(s) martien(s) après l'arrivée du rover";
+
 
         base_div_elem.appendChild(img_elem);
+        base_div_elem.appendChild(text_elem);
         view.div_result.appendChild(base_div_elem);
     }
 };
@@ -79,7 +84,6 @@ fetch(API_BASEURL + "/rovers/perseverance/photos?earth_date=2023-03-10&camera=mc
         showError(err);
     });
 
-<<<<<<< HEAD
 view.btn_search.addEventListener("click", function () {
     // créé une configuration a partire des options coché puis appeller une fonction pour faire l'affichage du résultat
     let choosed_rover = document.querySelector('input[name="rover"]:checked').value;
@@ -88,6 +92,3 @@ view.btn_search.addEventListener("click", function () {
 
     fetchPhotoFromConfig(config);
 });
-=======
- 
->>>>>>> 1e47622 (rendre cliquable les boutons rechercher et favoris)
