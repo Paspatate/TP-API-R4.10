@@ -56,7 +56,7 @@ h1 {
 
 #bloc-recherche {
   display: flex;
-  margin: 0 auto;
+  margin: 10px;
   min-width: 450px;
   flex-direction: row;
 }
@@ -64,7 +64,7 @@ h1 {
 #bloc-recherche > input[type="text"],
 #bloc-recherche > button {
   display: block;
-  font-size: 1.2em;
+  font-size: 0.8em;
 }
 
 #bloc-recherche > input[type="text"] {
@@ -75,6 +75,7 @@ h1 {
 }
 
 #bloc-recherche > button {
+  align-self: flex-end;
   padding: 0.8em 0.8em;
   /* Bordure invisible pour que le hover ne bouge pas le bouton */
   border: 1px solid var(--main-green);
@@ -165,4 +166,30 @@ h1 {
   #section-favoris {
     flex: 0;
   }
+}
+
+#earth-date{
+  color: var(--almost-black);
+  border: 0.3em solid var(--main-green);
+  min-height: 30px;
+
+}
+
+#search-btn{
+  padding: 0.2em 0.2em;
+  border: 1px solid var(--main-green);
+  background-color: var(--main-green);
+
+}
+
+#search-btn:hover{
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+ul li{
+  margin: 0.5em;
+  display: inline-block;
+  list-style: none;
+  
 }
