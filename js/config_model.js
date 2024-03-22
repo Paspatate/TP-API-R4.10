@@ -13,6 +13,7 @@ class Config {
    */
   
   mDate;
+
   
   /**
    * constructeur de l'objet Config
@@ -44,4 +45,17 @@ class Config {
   
     return request;
   }
+
+  getRover() {
+    return this.mRover;
+  }
+  
+  getCamera() {
+    return this.mCamera;
+  }
+  
+  getDate() {
+    return this.mDate;
+  }
+
 }

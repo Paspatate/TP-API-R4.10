@@ -1,4 +1,5 @@
 const API_BASEURL = "https://mars-photos.herokuapp.com/api/v1";
+let favorite_list = [];
 
 let showRovers = function (rovers) {
     for (const rover of rovers) {
@@ -41,6 +42,23 @@ let showPhoto = function (photos) {
     }
 };
 
+let showFavorits = function () {
+    view.ul_favorite.replaceChildren();
+    for (const fav of favorite_list) {
+        let list_elem = document.createElement("li");
+        let span_elem = document.createElement("span");
+        
+        span_elem.innerText = "Rover : " + fav.getRover() + ", Date : " + fav.getDate();
+        
+        if (fav.getCamera() !== null) {
+            span_elem.innerText += fav.getCamera();
+        }
+
+        list_elem.appendChild(span_elem);
+        view.ul_favorite.appendChild(list_elem);
+    }
+};
+
 /**
  * @param {Config} config configuration pour la recherche
  */
@@ -80,4 +98,14 @@ view.btn_search.addEventListener("click", function () {
     const config = new Config(choosed_rover, choosed_date);
 
     fetchPhotoFromConfig(config);
+});
+
+view.btn_addFavorite.addEventListener("click", function() {
+    let date = view.date_earthDate.value;
+    let rover = document.querySelector('input[name="rover"]:checked').value;
+    let fav_config = new Config(rover, date);
+    
+    favorite_list.push(fav_config);
+
+    showFavorits();
 });

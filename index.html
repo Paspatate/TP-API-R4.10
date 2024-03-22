@@ -30,14 +30,20 @@
           <input type="text" placeholder="Que cherchez-vous ?" />-->
           <section id="section-param">
             <h2>Liste des rovers disponibles</h2>
-              <ul id="rover-list"></ul>
+            <ul id="rover-list"></ul>
             <h2>Liste des caméras disponibles</h2>
-              <ul id="camera-list"></ul>
+            <ul id="camera-list"></ul>
             <h2>Selectionner une date</h2>
-              <input type="date" id="earth-date">
+            <input type="date" id="earth-date">
             
             <input type="button" id="search-btn" value="Chercher">
 
+          </section>
+          <section id="section-favorite">
+            <h2>Liste des favorits</h2>
+            <p>Cliqué sur un element de la liste pour retrouver le resultat</p>
+            <ul id="favorite-param">
+            </ul>
           </section>
 
 
@@ -55,7 +61,6 @@
           <button
             id="btn-favoris"
             type="button"
-            disabled
             title="Ajouter la recherche aux favoris"
           >
             <!-- Icone étoile vide
