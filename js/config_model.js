@@ -14,24 +14,34 @@ class Config {
   
   mDate;
   
-  constructor(rover, camera = null, date = null) {
-    this.mRover = rover;
-    this.mCamera = camera;
+  /**
+   * constructeur de l'objet Config
+   * @param {string} rover nom du rover choisie
+   * @param {string} camera nom de la camera choisie
+   * @param {string} date date voulue de recherche au format AAAA-MM-JJ
+   */
+  constructor(rover, date, camera = null) {
+    this.mRover = rover.toLowerCase();
     this.mDate = date;
+
+    if (typeof camera === 'string' || camera instanceof String) {
+      this.mCamera = camera.toLowerCase();
+    } else {
+      this.mCamera = null
+    }
+
   }
 
   getQueryUrl() {
     const baseRequest = "/rovers";
-    const request = baseRequest + "/" + rover + "/photos?";
-
-    if (typeof this.mCamera === 'string' || this.mCamera instanceof String) {
+    let request = baseRequest + "/" + this.mRover + "/photos?page=1";
+    
+    if (typeof this.mDate === 'string' || this.mDate instanceof String) {
       request += "camera=" + this.mCamera + "&";
     }
-
-    if (typeof this.mDate === 'string' || this.mDate instanceof String) {
-      request += "earth_date=" + this.mDate + "&";
-    }
-
+     
+    request += "earth_date=" + this.mDate + "&";
+  
     return request;
   }
 }

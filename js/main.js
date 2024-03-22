@@ -21,14 +21,15 @@ let showRovers = function (rovers) {
     }
 };
 
-let showError = function(err) {
+let showError = function (err) {
     console.error("Une erreur est survenue");
-    console.error(err)
+    console.error(err);
     alert("une erreur est survenue");
-}
+};
 
-let showPhoto = function(photos) {
+let showPhoto = function (photos) {
     console.log(photos);
+    view.div_result.replaceChildren();
     for (const photo of photos) {
         const base_div_elem = document.createElement("div");
         const img_elem = document.createElement("img");
@@ -38,7 +39,18 @@ let showPhoto = function(photos) {
         base_div_elem.appendChild(img_elem);
         view.div_result.appendChild(base_div_elem);
     }
-}
+};
+
+/**
+ * @param {Config} config configuration pour la recherche
+ */
+let fetchPhotoFromConfig = function (config) {
+    fetch(API_BASEURL + config.getQueryUrl())
+        .then((result) => result.json())
+        .then((result) => {
+            showPhoto(result.photos);
+        });
+};
 
 fetch(API_BASEURL + "/rovers")
     .then((res) => res.json())
@@ -51,11 +63,8 @@ fetch(API_BASEURL + "/rovers")
         console.error(err);
     });
 
-view.btn_search.addEventListener("click", function () {
-    // créé une configuration a partire des options coché puis appeller une fonction pour faire l'affichage du résultat
-});
 
-fetch(API_BASEURL + "/rovers/perseverance/photos?sol=0&page=1")
+fetch(API_BASEURL + "/rovers/perseverance/photos?earth_date=2023-03-10&camera=mcz_right&page=1")
     .then((res) => res.json())
     .then((res) => {
         showPhoto(res.photos);
@@ -63,3 +72,12 @@ fetch(API_BASEURL + "/rovers/perseverance/photos?sol=0&page=1")
     .catch((err) => {
         showError(err);
     });
+
+view.btn_search.addEventListener("click", function () {
+    // créé une configuration a partire des options coché puis appeller une fonction pour faire l'affichage du résultat
+    let choosed_rover = document.querySelector('input[name="rover"]:checked').value;
+    let choosed_date = view.date_earthDate.value;
+    const config = new Config(choosed_rover, choosed_date);
+
+    fetchPhotoFromConfig(config);
+});
