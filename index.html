@@ -26,7 +26,20 @@
       <section id="section-recherche">
         <div id="bloc-recherche">
           <!-- Champ de recherche -->
-          <input type="text" placeholder="Que cherchez-vous ?" />
+          <!-- 
+          <input type="text" placeholder="Que cherchez-vous ?" />-->
+          <section id="section-param">
+            <h2>Liste des rovers disponibles</h2>
+              <ul id="rover-list"></ul>
+            <h2>Liste des caméras disponibles</h2>
+              <ul id="camera-list"></ul>
+            <h2>Selectionner une date</h2>
+              <input type="date" id="earth-date">
+            
+            <input type="button" id="search-btn" value="Chercher">
+
+          </section>
+
 
           <!-- Boutons -->
           <button
@@ -56,7 +69,7 @@
             <!-- (Les 2 icones d'étoile provenant de flaticon.com) -->
           </button>
         </div>
-
+      
         <!-- Résultats de recherche -->
         <div id="bloc-gif-attente">
           <img
@@ -111,16 +124,7 @@
         <p class="info-vide">(Aucune recherche favorite)</p>
       </section>
     -->
-      <section id="section-param">
-        <h2>Liste des rovers disponible</h2>
-        <ul id="rover-list">
-        </ul>
-        <ul id="camera-list">
-        </ul>
-        <input type="date" id="earth-date">
-        <input type="button" id="search-btn" value="Chercher">
-
-      </section>
+      
     </main>
     <script src="js/view.js"></script>
     <script src="js/config_model.js"></script>
