@@ -1,9 +1,9 @@
 const API_ENDPOINT = "https://mars-photos.herokuapp.com/api/v1";
 
-let showRovers = function(rovers) {
+let showRovers = function (rovers) {
     for (const rover of rovers) {
         let list_elem = document.createElement("li");
-        
+
         let input_elem = document.createElement("input");
         input_elem.type = "radio";
         input_elem.value = rover.name;
@@ -19,14 +19,19 @@ let showRovers = function(rovers) {
 
         view.ul_rovers.appendChild(list_elem);
     }
-
 };
 
 fetch(API_ENDPOINT + "/rovers")
-    .then(res => res.json())
-    .then(res => {
+    .then((res) => res.json())
+    .then((res) => {
         console.log(res);
         showRovers(res.rovers);
-    }).catch((err) => {console.error("Error when loading rover"); console.error(err)});
+    })
+    .catch((err) => {
+        console.error("Error when loading rover");
+        console.error(err);
+    });
 
-view.btn_s
+view.btn_search.addEventListener("click", function () {
+    // créé une configuration a partire des options coché puis appeller une fonction pour faire l'affichage du résultat
+});

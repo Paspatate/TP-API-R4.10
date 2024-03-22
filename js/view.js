@@ -4,5 +4,3 @@ const view = {
   ul_cameras: document.getElementById("camera-list"),
   ul_rovers: document.getElementById("rover-list"),
 };
-
-view.prototype.
