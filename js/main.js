@@ -1,4 +1,4 @@
-const API_ENDPOINT = "https://mars-photos.herokuapp.com/api/v1";
+const API_BASEURL = "https://mars-photos.herokuapp.com/api/v1";
 
 let showRovers = function (rovers) {
     for (const rover of rovers) {
@@ -21,7 +21,26 @@ let showRovers = function (rovers) {
     }
 };
 
-fetch(API_ENDPOINT + "/rovers")
+let showError = function(err) {
+    console.error("Une erreur est survenue");
+    console.error(err)
+    alert("une erreur est survenue");
+}
+
+let showPhoto = function(photos) {
+    console.log(photos);
+    for (const photo of photos) {
+        const base_div_elem = document.createElement("div");
+        const img_elem = document.createElement("img");
+
+        img_elem.src = photo.img_src;
+
+        base_div_elem.appendChild(img_elem);
+        view.div_result.appendChild(base_div_elem);
+    }
+}
+
+fetch(API_BASEURL + "/rovers")
     .then((res) => res.json())
     .then((res) => {
         console.log(res);
@@ -35,3 +54,12 @@ fetch(API_ENDPOINT + "/rovers")
 view.btn_search.addEventListener("click", function () {
     // créé une configuration a partire des options coché puis appeller une fonction pour faire l'affichage du résultat
 });
+
+fetch(API_BASEURL + "/rovers/perseverance/photos?sol=0&page=1")
+    .then((res) => res.json())
+    .then((res) => {
+        showPhoto(res.photos);
+    })
+    .catch((err) => {
+        showError(err);
+    });
