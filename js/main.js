@@ -60,6 +60,9 @@ let showFavorits = function () {
         let span_elem = document.createElement("span");
         
         span_elem.innerText = "Rover : " + fav.getRover() + ", Date : " + fav.getDate();
+        span_elem.addEventListener("click", () => {
+            loadFavorite(fav);
+        })
         
         if (fav.getCamera() !== null) {
             span_elem.innerText += fav.getCamera();
@@ -69,6 +72,17 @@ let showFavorits = function () {
         view.ul_favorite.appendChild(list_elem);
     }
 };
+
+let loadFavorite = function(favorite) {
+    let rg_rover = document.querySelectorAll('input[name="rover"]');
+    for(rover_elem of rg_rover) {
+        if (rover_elem.value.toLowerCase() == favorite.getRover()) {
+            rover_elem.checked = true;
+        }
+    }
+    view.date_earthDate.value = favorite.getDate();
+    fetchPhotoFromConfig(favorite);
+}
 
 /**
  * @param {Config} config configuration pour la recherche
@@ -81,6 +95,11 @@ let fetchPhotoFromConfig = function (config) {
         });
 };
 
+/**
+ * Test si une configuration est dans les favoris ou non
+ * @param {Config} config config a tester
+ * @returns true si config dans les favoris, false sinon
+ */
 let configInFav = function(config) {
     for (const conf of favorite_list) {
         if (conf.compareTo(config) == 0) {
