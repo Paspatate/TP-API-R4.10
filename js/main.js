@@ -58,6 +58,12 @@ let showFavorits = function () {
     for (const fav of favorite_list) {
         let list_elem = document.createElement("li");
         let span_elem = document.createElement("span");
+        let cross_img_elem = document.createElement("img");
+
+        cross_img_elem.src = "images/croix.svg";
+        cross_img_elem.width = 15;
+
+        cross_img_elem.addEventListener("click", () => {removeFavoris(fav)});
         
         span_elem.innerText = "Rover : " + fav.getRover() + ", Date : " + fav.getDate();
         span_elem.addEventListener("click", () => {
@@ -69,9 +75,14 @@ let showFavorits = function () {
         }
 
         list_elem.appendChild(span_elem);
+        list_elem.appendChild(cross_img_elem);
         view.ul_favorite.appendChild(list_elem);
     }
 };
+
+let removeFavoris = function(favoris) {
+    // remove favoris
+}
 
 let loadFavorite = function(favorite) {
     let rg_rover = document.querySelectorAll('input[name="rover"]');
