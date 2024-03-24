@@ -19,6 +19,12 @@ let showRovers = function (rovers) {
         list_elem.appendChild(checkbox_label_elem);
 
         view.ul_rovers.appendChild(list_elem);
+
+        input_elem.addEventListener("click", function(){
+            view.btn_search.classList.add("btn_clicable");
+            view.btn_favoris.classList.add("btn_clicable");
+            
+        })
     }
 };
 
@@ -34,10 +40,15 @@ let showPhoto = function (photos) {
     for (const photo of photos) {
         const base_div_elem = document.createElement("div");
         const img_elem = document.createElement("img");
+        const text_elem = document.createElement("p");
 
         img_elem.src = photo.img_src;
+        text_elem.setAttribute("for", photo.id);
+        text_elem.innerText = photo.earth_date + ", " + photo.rover.name + ", " + photo.sol + " jour(s) martien(s) après l'arrivée du rover";
+
 
         base_div_elem.appendChild(img_elem);
+        base_div_elem.appendChild(text_elem);
         view.div_result.appendChild(base_div_elem);
     }
 };
