@@ -58,4 +58,12 @@ class Config {
     return this.mDate;
   }
 
+  compareTo(oConfig) {
+    if (this.mRover === oConfig.getRover() && this.mDate === oConfig.getDate() && this.mCamera === oConfig.getCamera()) {
+      return 0;
+    } else {
+      return 1;
+    }
+  }
+
 }

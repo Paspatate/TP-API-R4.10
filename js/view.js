@@ -1,5 +1,6 @@
 const view = {
   btn_search: document.getElementById("btn-lancer-recherche"),
+  btn_addFavorite: document.getElementById("btn-favoris"),
   date_earthDate: document.getElementById("earth-date"),
   ul_cameras: document.getElementById("camera-list"),
   ul_rovers: document.getElementById("rover-list"),

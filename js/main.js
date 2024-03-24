@@ -81,6 +81,15 @@ let fetchPhotoFromConfig = function (config) {
         });
 };
 
+let configInFav = function(config) {
+    for (const conf of favorite_list) {
+        if (conf.compareTo(config) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 fetch(API_BASEURL + "/rovers")
     .then((res) => res.json())
     .then((res) => {
@@ -116,7 +125,9 @@ view.btn_addFavorite.addEventListener("click", function() {
     let rover = document.querySelector('input[name="rover"]:checked').value;
     let fav_config = new Config(rover, date);
     
-    favorite_list.push(fav_config);
+    if (!configInFav(fav_config)) {
+        favorite_list.push(fav_config);
+    }
 
     showFavorits();
 });
