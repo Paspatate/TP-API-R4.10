@@ -1,6 +1,10 @@
 const API_BASEURL = "https://mars-photos.herokuapp.com/api/v1";
 let favorite_list = [];
 
+/**
+ * Affiche un tableau de rover
+ * @param rovers un objet qui contient les informations par rapport au rover (de l'api)
+ */
 let showRovers = function (rovers) {
     for (const rover of rovers) {
         let list_elem = document.createElement("li");
@@ -28,12 +32,20 @@ let showRovers = function (rovers) {
     }
 };
 
+/**
+ * indique q'une erreur c'est passé
+ * @param err l'erreur a afficher
+ */
 let showError = function (err) {
     console.error("Une erreur est survenue");
     console.error(err);
     alert("une erreur est survenue");
 };
 
+/**
+ * Affiche dans le DOM les photos passer en paramètre
+ * @param {Array} photos tableau contenant des objets photo renvoyé par l'api
+ */
 let showPhoto = function (photos) {
     console.log(photos);
     view.div_result.replaceChildren();
@@ -53,6 +65,9 @@ let showPhoto = function (photos) {
     }
 };
 
+/**
+ * Affiche dans le DOM les favoris de favorite_list
+ */
 let showFavorits = function () {
     view.ul_favorite.replaceChildren();
     for (const fav of favorite_list) {
@@ -80,10 +95,23 @@ let showFavorits = function () {
     }
 };
 
+/**
+ * supprime une configuration favorite
+ * @param {Config} un favoris a supprimé
+ */
 let removeFavoris = function(favoris) {
-    // remove favoris
+    for (i in favorite_list) {
+        if (favorite_list[i].compareTo(favoris) == 0) {
+            favorite_list.splice(i, 1);
+        }
+    }
+    showFavorits();
 }
 
+/**
+ * Charge une config favorite dans le DOM et lance l'affichage des photos
+ * @param {Config} favorite la config a charger
+ */
 let loadFavorite = function(favorite) {
     let rg_rover = document.querySelectorAll('input[name="rover"]');
     for(rover_elem of rg_rover) {
