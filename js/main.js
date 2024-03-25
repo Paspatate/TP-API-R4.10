@@ -62,6 +62,7 @@ let showPhoto = function (photos) {
         base_div_elem.appendChild(text_elem);
         view.div_result.appendChild(base_div_elem);
     }
+    view.div_waitingGif.classList.add("hidden");
 };
 
 
@@ -105,6 +106,7 @@ view.btn_search.addEventListener("click", function () {
     let choosed_date = view.date_earthDate.value;
     const config = new Config(choosed_rover, choosed_date);
 
+    view.div_waitingGif.classList.remove("hidden");
     fetchPhotoFromConfig(config);
 });
 

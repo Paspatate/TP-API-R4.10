@@ -4,7 +4,8 @@ const view = {
   date_earthDate: document.getElementById("earth-date"),
   ul_cameras: document.getElementById("camera-list"),
   ul_rovers: document.getElementById("rover-list"),
-  ul_favorite: document.getElementById("favorite-param"),
+  ul_favorite: document.getElementById("liste-favoris"),
   div_result: document.getElementById("bloc-resultats"),
-  btn_favoris: document.getElementById("btn-favoris")
+  div_waitingGif: document.getElementById("bloc-gif-attente"),
+  btn_favoris: document.getElementById("btn-favoris"),
 };

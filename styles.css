@@ -107,9 +107,12 @@ h1 {
 
 /* GIF de chargement (caché par défaut) */
 #bloc-gif-attente {
-  display: none;
   margin: 40px;
   text-align: center;
+}
+
+.hidden {
+  display: none;
 }
 
 #bloc-resultats p.res::before {
