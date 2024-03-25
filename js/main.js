@@ -78,7 +78,10 @@ let showFavorits = function () {
         cross_img_elem.src = "images/croix.svg";
         cross_img_elem.width = 15;
 
-        cross_img_elem.addEventListener("click", () => {removeFavoris(fav)});
+        cross_img_elem.addEventListener("click", () => {
+                removeFavoris(fav);
+                saveFavorisToClient();
+            });
         
         span_elem.innerText = "Rover : " + fav.getRover() + ", Date : " + fav.getDate();
         span_elem.addEventListener("click", () => {
@@ -148,6 +151,21 @@ let configInFav = function(config) {
     return false;
 }
 
+let saveFavorisToClient = function() {
+    let toSave = JSON.stringify(favorite_list);
+    localStorage.setItem("favoris", toSave);
+}
+
+let loadFavorisFromClient = function() {
+    if (localStorage.getItem("favoris")) {
+        let storage_list = JSON.parse(localStorage.getItem("favoris"));
+        for (obj of storage_list) {
+            favorite_list.push(new Config(obj.mRover, obj.mDate, obj.mCamera));
+        }
+        showFavorits();
+    }
+}
+
 fetch(API_BASEURL + "/rovers")
     .then((res) => res.json())
     .then((res) => {
@@ -188,4 +206,7 @@ view.btn_addFavorite.addEventListener("click", function() {
     }
 
     showFavorits();
+    saveFavorisToClient();
 });
+
+loadFavorisFromClient();
