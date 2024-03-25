@@ -48,6 +48,11 @@ let showError = function (err) {
 let showPhoto = function (photos) {
     console.log(photos);
     view.div_result.replaceChildren();
+    if (photos.length == 0) {
+        const p_comment = document.createElement("p");
+        p_comment.innerText = "Aucun résultat trouvé avec ces paramètre";
+        view.div_result.appendChild(p_comment);
+    }
     for (const photo of photos) {
         const base_div_elem = document.createElement("div");
         const img_elem = document.createElement("img");
